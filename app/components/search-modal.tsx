@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { DOC_ARTICLES, DocArticle } from "../data/docs-content";
-import { IconSearch, IconX, IconChevronRight, IconBook } from "./icons";
+import { DOC_ARTICLES, type DocArticle } from "../data/docs-content";
+import { IconSearch, IconX, IconChevronRight } from "./icons";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -32,7 +32,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
 
   if (!isOpen) return null;
 
-  const articlesList = Object.values(DOC_ARTICLES);
+  const articlesList: DocArticle[] = Object.values(DOC_ARTICLES);
   const filteredArticles = query.trim() === ""
     ? articlesList
     : articlesList.filter(

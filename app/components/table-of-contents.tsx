@@ -1,5 +1,5 @@
 import React from "react";
-import { DocSectionHeading } from "../data/docs-content";
+import type { DocSectionHeading } from "../data/docs-content";
 
 interface TableOfContentsProps {
   headings: DocSectionHeading[];
