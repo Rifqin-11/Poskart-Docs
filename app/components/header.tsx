@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router";
 import { IconSearch, IconExternalLink, IconMenu } from "./icons";
-import appLogo from "/Users/iqinau/Coding/Poskart/poskart_admin/public/app-logo.png";
+
+const appLogo = "/app-logo.png";
 
 interface HeaderProps {
   onOpenSearch: () => void;
