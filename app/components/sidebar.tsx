@@ -26,13 +26,18 @@ export function Sidebar({ currentSlug, isOpenMobile, onCloseMobile }: SidebarPro
                   key={article.slug}
                   to={`/docs/${article.slug}`}
                   onClick={onCloseMobile}
-                  className={`block py-1 px-2 rounded-md transition-colors truncate ${
+                  className={`flex items-center justify-between gap-1.5 py-1 px-2 rounded-md transition-colors ${
                     isActive
                       ? "text-[#00357b] font-semibold bg-[#00357b]/5"
                       : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/60"
                   }`}
                 >
-                  {article.title}
+                  <span className="truncate">{article.title}</span>
+                  {article.badge && (
+                    <span className="shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-[#00357b]/10 text-[#00357b] leading-none">
+                      {article.badge}
+                    </span>
+                  )}
                 </Link>
               );
             })}

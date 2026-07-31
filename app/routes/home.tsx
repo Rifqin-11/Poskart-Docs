@@ -70,23 +70,26 @@ export default function Home() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {DOC_CATEGORIES.map((category) => (
-                  <div key={category.id} className="p-5 rounded-xl border border-zinc-200 bg-white hover:border-zinc-300 transition-colors space-y-3 shadow-2xs">
-                    <h3 className="font-bold text-sm text-zinc-900 border-b border-zinc-100 pb-2">
-                      {category.title}
-                    </h3>
-                    <div className="space-y-1.5">
-                      {category.articles.map((article) => (
-                        <Link
-                          key={article.slug}
-                          to={`/docs/${article.slug}`}
-                          className="flex items-center justify-between py-1 px-1 rounded text-xs text-zinc-600 hover:text-[#00357b] transition-colors group"
-                        >
-                          <span className="truncate">{article.title}</span>
-                          <IconChevronRight className="w-3.5 h-3.5 text-zinc-300 group-hover:text-[#00357b] transition-colors shrink-0 ml-2" />
-                        </Link>
-                      ))}
+                  <Link
+                    key={category.id}
+                    to={`/docs/${category.articles[0]?.slug ?? ""}`}
+                    className="group p-5 rounded-xl border border-zinc-200 bg-white hover:border-[#00357b]/40 hover:shadow-md transition-all space-y-3 shadow-2xs flex flex-col"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-bold text-base text-zinc-900 group-hover:text-[#00357b] transition-colors leading-snug">
+                        {category.title}
+                      </h3>
+                      <IconChevronRight className="w-4 h-4 text-zinc-300 group-hover:text-[#00357b] transition-colors shrink-0 mt-0.5" />
                     </div>
-                  </div>
+                    <p className="text-xs text-zinc-500 leading-relaxed flex-1">
+                      {category.description}
+                    </p>
+                    <div className="pt-1 border-t border-zinc-100">
+                      <span className="text-xs font-medium text-zinc-400 group-hover:text-[#00357b]/70 transition-colors">
+                        {category.articles.length} artikel →
+                      </span>
+                    </div>
+                  </Link>
                 ))}
               </div>
             </div>
