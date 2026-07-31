@@ -6,6 +6,7 @@ import { Footer } from "../components/footer";
 import { SearchModal } from "../components/search-modal";
 import { DOC_CATEGORIES } from "../data/docs-content";
 import { IconSearch, IconChevronRight } from "../components/icons";
+import { useLang } from "../context/language";
 import "../utils/sync-assets.server";
 
 export function meta() {
@@ -18,6 +19,7 @@ export function meta() {
 export default function Home() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const { lang } = useLang();
 
   return (
     <div className="min-h-screen bg-white text-zinc-900 flex flex-col font-sans">
@@ -42,14 +44,16 @@ export default function Home() {
                 POSKART Documentation
               </h1>
               <p className="text-base text-zinc-600 leading-relaxed max-w-3xl">
-                Platform SaaS Photobooth terintegrasi. Panduan Web Admin, setup aplikasi Flutter Kiosk, tuning printer, serta Kiosk API Reference.
+                {lang === "en"
+                  ? "Integrated SaaS Photobooth platform. Web Admin guide, Flutter Kiosk setup, printer tuning, and Kiosk API Reference."
+                  : "Platform SaaS Photobooth terintegrasi. Panduan Web Admin, setup aplikasi Flutter Kiosk, tuning printer, serta Kiosk API Reference."}
               </p>
               <div className="flex items-center gap-3 pt-2">
                 <Link
                   to="/docs/getting-started-quickstart"
                   className="px-4 py-2 rounded-lg bg-[#00357b] hover:bg-[#002557] text-white text-xs font-semibold transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Get Started</span>
+                  <span>{lang === "en" ? "Get Started" : "Mulai"}</span>
                   <IconChevronRight className="w-3.5 h-3.5" />
                 </Link>
                 <button
@@ -65,7 +69,7 @@ export default function Home() {
             {/* Clean Bento Grid for Categories */}
             <div className="space-y-8">
               <h2 className="text-xl font-bold text-zinc-900 tracking-tight">
-                Dokumentasi Berdasarkan Topik
+                {lang === "en" ? "Documentation by Topic" : "Dokumentasi Berdasarkan Topik"}
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -77,16 +81,16 @@ export default function Home() {
                   >
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="font-bold text-base text-zinc-900 group-hover:text-[#00357b] transition-colors leading-snug">
-                        {category.title}
+                        {lang === "en" ? category.titleEn : category.title}
                       </h3>
                       <IconChevronRight className="w-4 h-4 text-zinc-300 group-hover:text-[#00357b] transition-colors shrink-0 mt-0.5" />
                     </div>
                     <p className="text-xs text-zinc-500 leading-relaxed flex-1">
-                      {category.description}
+                      {lang === "en" ? category.descriptionEn : category.description}
                     </p>
                     <div className="pt-1 border-t border-zinc-100">
                       <span className="text-xs font-medium text-zinc-400 group-hover:text-[#00357b]/70 transition-colors">
-                        {category.articles.length} artikel →
+                        {category.articles.length} {lang === "en" ? "articles" : "artikel"} →
                       </span>
                     </div>
                   </Link>

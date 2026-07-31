@@ -10,6 +10,7 @@ import { Callout } from "../components/callout";
 import { DocImage } from "../components/doc-image";
 import { DOC_ARTICLES } from "../data/docs-content";
 import { IconChevronRight } from "../components/icons";
+import { useLang } from "../context/language";
 
 export function meta({ params }: { params: { slug?: string } }) {
   const article = params.slug ? DOC_ARTICLES[params.slug] : null;
@@ -23,6 +24,7 @@ export default function DocsArticlePage() {
   const { slug } = useParams();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const { lang } = useLang();
 
   const article = slug ? DOC_ARTICLES[slug] : null;
 
@@ -35,21 +37,32 @@ export default function DocsArticlePage() {
         />
         <div className="flex-1 flex items-center justify-center p-8 text-center">
           <div className="max-w-md space-y-4">
-            <h1 className="text-2xl font-bold text-zinc-900">Artikel Tidak Ditemukan</h1>
+            <h1 className="text-2xl font-bold text-zinc-900">
+              {lang === "en" ? "Article Not Found" : "Artikel Tidak Ditemukan"}
+            </h1>
             <p className="text-xs text-zinc-500">
-              Halaman dokumentasi dengan slug "{slug}" tidak ditemukan.
+              {lang === "en"
+                ? `Documentation page with slug "${slug}" was not found.`
+                : `Halaman dokumentasi dengan slug "${slug}" tidak ditemukan.`}
             </p>
             <Link
               to="/"
               className="inline-block px-4 py-2 rounded-lg bg-[#00357b] text-white text-xs font-medium"
             >
-              Kembali ke Dokumentasi
+              {lang === "en" ? "Back to Docs" : "Kembali ke Dokumentasi"}
             </Link>
           </div>
         </div>
       </div>
     );
   }
+
+  // Bilingual field resolution
+  const title = lang === "en" ? article.titleEn : article.title;
+  const description = lang === "en" ? article.descriptionEn : article.description;
+  const content = lang === "en" ? article.contentEn : article.content;
+  const headings = lang === "en" ? article.headingsEn : article.headings;
+  const categoryTitle = lang === "en" ? article.categoryTitleEn : article.categoryTitle;
 
   // Find previous and next articles
   const allArticlesList = Object.values(DOC_ARTICLES);
@@ -81,16 +94,16 @@ export default function DocsArticlePage() {
             <nav className="flex items-center gap-1.5 text-xs text-zinc-400 font-medium">
               <Link to="/" className="hover:text-zinc-700">Docs</Link>
               <IconChevronRight className="w-3 h-3 text-zinc-300" />
-              <span className="text-zinc-600">{article.categoryTitle}</span>
+              <span className="text-zinc-600">{categoryTitle}</span>
             </nav>
 
             {/* Article Header */}
             <div className="pb-4">
               <h1 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 tracking-tight leading-tight">
-                {article.title}
+                {title}
               </h1>
               <p className="text-sm text-zinc-500 mt-2 leading-relaxed">
-                {article.description}
+                {description}
               </p>
             </div>
 
@@ -182,7 +195,7 @@ export default function DocsArticlePage() {
             {/* Article Content HTML */}
             <article
               className="vite-doc-content"
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
 
             {/* Article Footer Navigation (Full Width & Equal Height) */}
@@ -194,7 +207,7 @@ export default function DocsArticlePage() {
                 >
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Previous Page</span>
                   <span className="font-semibold text-zinc-800 group-hover:text-[#00357b] mt-1 text-xs truncate">
-                    ← {prevArticle.title}
+                    ← {lang === "en" ? prevArticle.titleEn : prevArticle.title}
                   </span>
                 </Link>
               ) : <div />}
@@ -206,7 +219,7 @@ export default function DocsArticlePage() {
                 >
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">Next Page</span>
                   <span className="font-semibold text-zinc-800 group-hover:text-[#00357b] mt-1 text-xs truncate">
-                    {nextArticle.title} →
+                    {lang === "en" ? nextArticle.titleEn : nextArticle.title} →
                   </span>
                 </Link>
               ) : <div />}
@@ -218,7 +231,7 @@ export default function DocsArticlePage() {
         </main>
 
         {/* Right Table of Contents */}
-        <TableOfContents headings={article.headings} />
+        <TableOfContents headings={headings} />
       </div>
     </div>
   );

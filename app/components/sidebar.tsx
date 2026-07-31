@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { DOC_CATEGORIES } from "../data/docs-content";
 import { IconX } from "./icons";
+import { useLang } from "../context/language";
 
 interface SidebarProps {
   currentSlug?: string;
@@ -10,17 +11,20 @@ interface SidebarProps {
 }
 
 export function Sidebar({ currentSlug, isOpenMobile, onCloseMobile }: SidebarProps) {
+  const { lang } = useLang();
   const sidebarContent = (
     <nav className="flex flex-col space-y-6 py-6 px-6 text-xs leading-relaxed">
       {DOC_CATEGORIES.map((category) => (
         <div key={category.id} className="space-y-1.5">
           <h3 className="font-bold text-zinc-900 uppercase tracking-wider text-[11px]">
-            {category.title}
+            {lang === "en" ? category.titleEn : category.title}
           </h3>
 
           <div className="space-y-0.5">
             {category.articles.map((article) => {
               const isActive = currentSlug === article.slug;
+              const label = lang === "en" ? article.titleEn : article.title;
+              const badge = lang === "en" ? (article.badgeEn ?? article.badge) : article.badge;
               return (
                 <Link
                   key={article.slug}
@@ -32,10 +36,10 @@ export function Sidebar({ currentSlug, isOpenMobile, onCloseMobile }: SidebarPro
                       : "text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100/60"
                   }`}
                 >
-                  <span className="truncate">{article.title}</span>
-                  {article.badge && (
+                  <span className="truncate">{label}</span>
+                  {badge && (
                     <span className="shrink-0 text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-[#00357b]/10 text-[#00357b] leading-none">
-                      {article.badge}
+                      {badge}
                     </span>
                   )}
                 </Link>
@@ -60,7 +64,7 @@ export function Sidebar({ currentSlug, isOpenMobile, onCloseMobile }: SidebarPro
           <div className="fixed inset-0 bg-black/30 backdrop-blur-xs" onClick={onCloseMobile} />
           <div className="relative w-72 bg-white h-full shadow-2xl z-10 flex flex-col">
             <div className="flex items-center justify-between p-4 border-b border-zinc-200">
-              <span className="font-bold text-sm text-zinc-900">Dokumentasi</span>
+              <span className="font-bold text-sm text-zinc-900">{lang === "en" ? "Documentation" : "Dokumentasi"}</span>
               <button onClick={onCloseMobile} className="p-1 text-zinc-500 hover:bg-zinc-100 rounded">
                 <IconX className="w-5 h-5" />
               </button>

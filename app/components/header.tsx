@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { IconSearch, IconExternalLink, IconMenu } from "./icons";
+import { useLang } from "../context/language";
 
 interface HeaderProps {
   onOpenSearch: () => void;
@@ -10,9 +11,10 @@ interface HeaderProps {
 export function Header({ onOpenSearch, onToggleMobileSidebar }: HeaderProps) {
   const location = useLocation();
   const [imgSrc, setImgSrc] = useState("/app-logo.png");
+  const { lang, setLang } = useLang();
 
   const navLinks = [
-    { label: "Panduan", path: "/docs/getting-started-overview" },
+    { label: lang === "id" ? "Panduan" : "Guide", path: "/docs/getting-started-overview" },
     { label: "Admin", path: "/docs/admin-organization" },
     { label: "Kiosk", path: "/docs/kiosk-pairing" },
     { label: "Builder", path: "/docs/builder-frame-builder" },
@@ -74,6 +76,16 @@ export function Header({ onOpenSearch, onToggleMobileSidebar }: HeaderProps) {
 
       {/* Right Side Tools */}
       <div className="flex items-center gap-3">
+        {/* Language Toggle */}
+        <button
+          onClick={() => setLang(lang === "id" ? "en" : "id")}
+          className="hidden sm:flex items-center gap-0.5 text-[11px] font-bold border border-zinc-200 rounded-md overflow-hidden"
+          aria-label="Toggle language"
+        >
+          <span className={`px-2 py-1 transition-colors ${lang === "id" ? "bg-[#00357b] text-white" : "text-zinc-500 hover:bg-zinc-50"}`}>ID</span>
+          <span className={`px-2 py-1 transition-colors ${lang === "en" ? "bg-[#00357b] text-white" : "text-zinc-500 hover:bg-zinc-50"}`}>EN</span>
+        </button>
+
         {/* Vite.dev Style Search Button */}
         <button
           onClick={onOpenSearch}
