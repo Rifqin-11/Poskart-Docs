@@ -12,10 +12,15 @@ import "./app.css";
 import { LanguageProvider } from "./context/language";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", href: "/app-logo.png", type: "image/png" },
-  { rel: "shortcut icon", href: "/favicon.ico" },
-  { rel: "apple-touch-icon", href: "/app-logo.png" },
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  {
+    rel: "icon",
+    type: "image/png",
+    href: "/poskart-favicon.png?v=1",
+  },
+  {
+    rel: "preconnect",
+    href: "https://fonts.googleapis.com",
+  },
   {
     rel: "preconnect",
     href: "https://fonts.gstatic.com",

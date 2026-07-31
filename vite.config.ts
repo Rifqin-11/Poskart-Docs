@@ -17,8 +17,8 @@ function copyPoskartAssetsPlugin() {
           fs.mkdirSync(destPublic, { recursive: true });
         }
         fs.copyFileSync(srcLogo, path.join(destPublic, "app-logo.png"));
-        fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.ico"));
-        fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.png"));
+        fs.copyFileSync(srcLogo, path.join(destPublic, "poskart-favicon.ico"));
+        fs.copyFileSync(srcLogo, path.join(destPublic, "poskart-favicon.png"));
         if (fs.existsSync(srcBrandLogo)) {
           fs.copyFileSync(srcBrandLogo, path.join(destPublic, "Logo Poskart.png"));
         }
@@ -34,8 +34,8 @@ function copyPoskartAssetsPlugin() {
           fs.mkdirSync(destPublic, { recursive: true });
         }
         fs.copyFileSync(srcLogo, path.join(destPublic, "app-logo.png"));
-        fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.ico"));
-        fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.png"));
+        fs.copyFileSync(srcLogo, path.join(destPublic, "poskart-favicon.ico"));
+        fs.copyFileSync(srcLogo, path.join(destPublic, "poskart-favicon.png"));
         if (fs.existsSync(srcBrandLogo)) {
           fs.copyFileSync(srcBrandLogo, path.join(destPublic, "Logo Poskart.png"));
         }
@@ -54,8 +54,8 @@ if (fs.existsSync(srcLogo)) {
     fs.mkdirSync(destPublic, { recursive: true });
   }
   fs.copyFileSync(srcLogo, path.join(destPublic, "app-logo.png"));
-  fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.ico"));
-  fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.png"));
+  fs.copyFileSync(srcLogo, path.join(destPublic, "poskart-favicon.ico"));
+  fs.copyFileSync(srcLogo, path.join(destPublic, "poskart-favicon.png"));
   if (fs.existsSync(srcBrandLogo)) {
     fs.copyFileSync(srcBrandLogo, path.join(destPublic, "Logo Poskart.png"));
   }

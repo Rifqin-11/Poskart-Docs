@@ -12,8 +12,8 @@ export function ensurePoskartAssets() {
         fs.mkdirSync(destPublic, { recursive: true });
       }
       fs.copyFileSync(srcLogo, path.join(destPublic, "app-logo.png"));
-      fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.ico"));
-      fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.png"));
+      // fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.ico"));
+      // fs.copyFileSync(srcLogo, path.join(destPublic, "favicon.png"));
       if (fs.existsSync(srcBrandLogo)) {
         fs.copyFileSync(srcBrandLogo, path.join(destPublic, "Logo Poskart.png"));
       }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router";
 import { IconSearch, IconExternalLink, IconMenu } from "./icons";
 import { useLang } from "../context/language";
@@ -10,7 +10,6 @@ interface HeaderProps {
 
 export function Header({ onOpenSearch, onToggleMobileSidebar }: HeaderProps) {
   const location = useLocation();
-  const [imgSrc, setImgSrc] = useState("/app-logo.png");
   const { lang, setLang } = useLang();
 
   const navLinks = [
@@ -36,14 +35,9 @@ export function Header({ onOpenSearch, onToggleMobileSidebar }: HeaderProps) {
         {/* Brand Logo with Official Poskart Cupid Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
           <img
-            src={imgSrc}
+            src="/logo-poskart.png"
             alt="POSKART Logo"
             className="w-7 h-7 object-contain transition-transform group-hover:scale-105"
-            onError={() => {
-              if (imgSrc === "/app-logo.png") {
-                setImgSrc("/Logo Poskart.png");
-              }
-            }}
           />
           <span className="font-extrabold text-base tracking-tight text-zinc-900 group-hover:text-[#00357b] transition-colors">
             POSKART
