@@ -7,7 +7,6 @@ import { SearchModal } from "../components/search-modal";
 import { DOC_CATEGORIES } from "../data/docs-content";
 import { IconSearch, IconChevronRight } from "../components/icons";
 import { useLang } from "../context/language";
-import "../utils/sync-assets.server";
 
 export function meta() {
   return [
