@@ -749,8 +749,6 @@ export const DOC_ARTICLES: Record<string, DocArticle> = {
       <p>To prevent guests from exiting the photobooth app to the tablet's main menu, enable the <strong>App Pinning / Lock Task Mode</strong> feature in your Android tablet settings.</p>
     `,
     content: `
-    ],
-    content: `
       <h2>1. Rekomendasi Spesifikasi Hardware</h2>
       <p>Aplikasi POSKART Kiosk dioptimalkan untuk performa tinggi pada tablet layar sentuh:</p>
       <ul>
@@ -1965,9 +1963,6 @@ await db.ledger.create(&#123; data: &#123; ...entryData &#125; &#125;);
         <li><strong>Real-time statistics:</strong> The display shows the number of people in the queue, current average wait time, and session throughput per hour.</li>
       </ul>
     `,
-    content: `
-      { id: "manajemen-operasional", title: "4. Manajemen Antrean Operasional" },
-    ],
     content: `
       <h2>1. Konsep Sistem Antrean POSKART</h2>
       <p>Sistem antrean POSKART dirancang untuk lokasi photobooth dengan volume pengunjung tinggi, seperti mal, pameran, atau acara pernikahan. Sistem ini membantu mengatur giliran pengunjung secara adil dan transparan, serta mengurangi kerumunan di sekitar booth.</p>
